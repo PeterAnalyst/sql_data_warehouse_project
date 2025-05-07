@@ -31,7 +31,7 @@ Documentation: Document the data model well in order to address business stakeho
 
 ---
 # 📁 Project Structure
-
+```
 data-warehouse-project/
 │
 ├── datasets                          |  # Raw datasets used for the project (ERP and CRM data)
@@ -47,7 +47,7 @@ data-warehouse-project/
 ├── LICENSE                           |  # License information for the repository
 ├── .gitignore                        |  # Files and directories to be ignored by Git
 └── requirements.txt                  |  # Dependencies and requirements for the project
-
+```
 ---
 
 ## 🔄 Data Pipeline Flow
