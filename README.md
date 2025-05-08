@@ -1,11 +1,11 @@
 # 🏗️ SQL Data Warehouse Project (Medallion Architecture)
 
-An end-to-end data warehouse built using SQL Server, demonstrating ETL pipelines, data modeling (star schema), and data quality checks.
+Building a modern data warehouse with SQL Server, using Medallion Architecture (Bronze, Silver, Gold) — includes ETL, data modeling, and analytics.
 
 
 # 🛠️ Sales Data Pipeline Project
 
-This project demonstrates an end-to-end ETL (Extract, Transform, Load) pipeline using SQL, organized into **Bronze**, **Silver**, and **Gold** layers following the Medallion Architecture pattern. The data originates from CRM and ERP systems and flows through various transformation stages to become analytics-ready.
+This project showcases an end-to-end ETL pipeline using SQL, simulating the flow of sales data from CRM and ERP systems into a modern data warehouse. The architecture follows a  Medallion Architecture pattern ( i.e **Bronze** → **Silver** → **Gold** stages) to transform raw data into analytics-ready formats.
 
 ---
 
@@ -30,12 +30,38 @@ Tools used: Microsoft SQL Server, T-SQL
 Documentation: Document the data model well in order to address business stakeholders as well as analytics teams
 
 ---
+## 🧱 Database and Schema Setup
+Before creating tables or views, the project defines:
+* A database: `Datawarehouse` 
+* Three schemas: `bronze`,  `silver`, and `gold`
+
+Script:
+
+```sql
+
+-- Create the data warehouse database
+CREATE DATABASE Datawarehouse;
+GO
+
+-- Use the database
+USE Datawarehouse;
+GO
+
+-- Create schemas
+CREATE SCHEMA bronze;
+CREATE SCHEMA silver;
+CREATE SCHEMA gold;
+```
+📂 You’ll find this script in scripts/database_setup.sql.
+
+---
 # 📁 Project Structure
 ```
 data-warehouse-project/
 │
 ├── datasets                          |  # Raw datasets used for the project (ERP and CRM data)
 ├── scripts                           |  # SQL scripts for ETL and transformations
+│  ├── database_setup.sql             |  # Create database and schemas
 │  ├── bronze                         |  # Scripts for extracting and loading raw data
 │  ├── silver                         |  # Scripts for cleaning and transforming data
 │  ├── gold                           |  # Scripts for creating analytical models
@@ -56,11 +82,11 @@ data-warehouse-project/
 
 ---
 
-## 🌐 Layer Descriptions
+## 🌐 Medallion Layer Descriptions
 
 ###  Bronze Layer
-- Raw ingestion of customer, product, and sales data
-- No transformation
+- Raw data import (no transformation)
+- Includes: crm_cust_info, erp_cust_az12, erp_loc_a101, erp_sales_data
 - Stored in `bronze_layer.sql`
 
 ###  Silver Layer
@@ -78,7 +104,7 @@ data-warehouse-project/
 
 ---
 
-## 📊 Star Schema
+## ⭐ Star Schema ERD
 
 ![Star Schema ERD](images/star_schema_erd.png)
 
@@ -98,7 +124,6 @@ Stored in `data_quality_checks.sql`
 ### ✅ Examples:
 - Checking for duplicate `customer_id` and `prd_id`
 - Cleaning null or invalid genders using fallback from alternate source
-- Ensuring only valid products (i.e., `prd_end_dt IS NULL`) are used
 
 ```sql
 CASE 
@@ -106,8 +131,10 @@ CASE
   ELSE ci.cst_gndr
 END AS gender
 ```
+- Ensuring only valid products (i.e., `WHERR prd_end_dt IS NULL`) are used
+---
 
-🔑 ## Key SQL Views Created
+## 🔎 SQL Views Created
 
 | View Name           | Description                |
 | ------------------- | -------------------------- |
@@ -115,6 +142,17 @@ END AS gender
 | `gold.dim_products` | Product info with category |
 | `gold.facts_sales`  | Final sales fact table     |
 
+---
+
+## Skills Demonstrated (Optional)
+* SQL Data Modeling
+* ETL (Extract, Transform, Load)
+* Schema Design
+* Data Quality Enforcement
+* Star Schema Construction
+* Analytical Reporting with SQL
+
+---
 
 Author
 Peter Junior Nwachineke
