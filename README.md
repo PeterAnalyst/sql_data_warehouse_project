@@ -78,7 +78,7 @@ data-warehouse-project/
 
 ## 🔄 Data Pipeline Flow
 
-![Data Pipeline Architecture](images/data_pipeline_architecture.png)
+![Data Pipeline Architecture](Images/data_warehouse_flow.JPG)
 
 ---
 
@@ -87,12 +87,12 @@ data-warehouse-project/
 ###  Bronze Layer
 - Raw data import (no transformation)
 - Includes: crm_cust_info, erp_cust_az12, erp_loc_a101, erp_sales_data
-- Stored in `bronze_layer.sql`
+- Stored in `ddl_bronze.sql`
 
 ###  Silver Layer
 - Cleaned and standardized data
 - Data Normalization
-- Stored in `silver_layer.sql`
+- Stored in `ddl_silver.sql`
 
 ###  Gold Layer
 - Cleaned and trusted views for analysis and Modelled into star schema
@@ -102,11 +102,12 @@ data-warehouse-project/
   - `gold_dim_products.sql`
   - `gold_facts_sales.sql`
 
+ ## 🔧Flow Chart
+  ![flow Chart](Images/data_warehouse_flow2.JPG)
+
 ---
 
 ## ⭐ Star Schema ERD
-
-![Star Schema ERD](images/star_schema_erd.png)
 
 **Fact Table**:
 - `facts_sales` (sales data)
@@ -114,7 +115,8 @@ data-warehouse-project/
 **Dimension Tables**:
 - `dim_customer` (customer attributes)
 - `dim_products` (product attributes)
-
+  
+![Star Schema ERD](Images/star_schema_gold_layer.JPG)
 ---
 
 ## 🧹 Data Quality Checks
@@ -154,9 +156,10 @@ END AS gender
 
 ---
 
-Author
-Peter Junior Nwachineke
+# 👤 About Me
+👋 Hi, I'm Peter Junior Nwachineke – a passionate Data Analyst with hands-on experience in SQL, Power BI, Excel, and Python. I'm currently pursuing an MBA in International Business Management at ISTEC and building data projects that turn raw information into actionable insights. I'm especially interested in process automation, dashboard reporting, and helping businesses make smarter, data-driven decisions.
+
 
 📧 [Email](peter.j.nwachineke@gmail.com)
 
-💼 [LinkedIn](https://www.linkedin.com/in/peter-j-nwachineke-819291247/)
+💼 [Connect with me on LinkedIn](https://www.linkedin.com/in/peter-j-nwachineke-819291247/)
