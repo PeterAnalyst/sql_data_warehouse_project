@@ -52,13 +52,13 @@ BEGIN
 			TRIM(cst_lastname) AS cst_lastname,
 			CASE 
 				WHEN UPPER(TRIM(cst_marital_status)) = 'S' THEN 'Single'
-				 WHEN UPPER(TRIM(cst_marital_status)) = 'M' THEN 'Married'
-				 ELSE 'n/a'
+				WHEN UPPER(TRIM(cst_marital_status)) = 'M' THEN 'Married'
+				ELSE 'n/a'
 			END cst_marital_status,
 			CASE 
 				WHEN UPPER(TRIM(cst_gndr)) = 'F' THEN 'Female'
-				 WHEN UPPER(TRIM(cst_gndr)) = 'M' THEN 'Male'
-				 ELSE 'n/a'
+				WHEN UPPER(TRIM(cst_gndr)) = 'M' THEN 'Male'
+				ELSE 'n/a'
 			END cst_gndr,
 			cst_create_date
 		FROM (
@@ -182,15 +182,15 @@ BEGIN
 		SELECT 
 			ROW_NUMBER() OVER (PARTITION BY cid ORDER BY cid) AS counted,
 			CASE 
-					WHEN TRIM(cid) LIKE 'NAS%' THEN  SUBSTRING(cid,4,LEN(cid))
-					ELSE cid
-				END AS cid,
-				CASE 
-					WHEN YEAR(bdate) <YEAR(GETDATE())-100  
-						OR YEAR(bdate) > YEAR(GETDATE()) THEN NULL
-					ELSE bdate
-				END AS bdate,
-				CASE
+				WHEN TRIM(cid) LIKE 'NAS%' THEN  SUBSTRING(cid,4,LEN(cid))
+				ELSE cid
+			END AS cid,
+			CASE 
+				WHEN YEAR(bdate) <YEAR(GETDATE())-100  
+					OR YEAR(bdate) > YEAR(GETDATE()) THEN NULL
+				ELSE bdate
+			END AS bdate,
+			CASE
 				WHEN TRIM(UPPER(gen)) = 'F' THEN 'Female'
 				WHEN TRIM(UPPER(gen)) = 'M' THEN 'Male'
 				WHEN TRIM(UPPER(gen)) = '' OR TRIM(UPPER(gen)) IS NULL  THEN 'n/a'
