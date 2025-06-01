@@ -144,7 +144,7 @@ In Summary
 
 ---
 
-### 📊 Advanced Analytics (NEW)
+### 📊 Advanced Analytics 
 To extract actionable business insights, I developed an Advanced Analytics layer on top of the Gold Layer. These SQL scripts include logic for:
 
 * KPI exploration and reporting
