@@ -65,10 +65,15 @@ data-warehouse-project/
 │  ├── bronze                         |  # Scripts for extracting and loading raw data
 │  ├── silver                         |  # Scripts for cleaning and transforming data
 │  ├── gold                           |  # Scripts for creating analytical models
+|  ├── advanced_analytics/            |  # Business insights and KPIs
 │
 ├── tests/                            |  # Test scripts and quality files
 │
-├── images                            |  # ERD & architecture diagrams
+├── images/                           |  # Architecture and ERD diagrams
+│   ├── data_warehouse_flow.JPG
+│   ├── data_warehouse_flow2.JPG
+│   └── star_schema_gold_layer.JPG
+|
 ├── README.md                         |  # Project overview and instructions
 ├── LICENSE                           |  # License information for the repository
 ├── .gitignore                        |  # Files and directories to be ignored by Git
@@ -78,23 +83,40 @@ data-warehouse-project/
 
 ## 🔄 Data Pipeline Flow
 
+This diagram summarizes how raw data flows through the Medallion layers:
+
+📌 Pipeline Overview
+
+📌 ETL Flow Breakdown (Bronze → Silver → Gold)
+
+
+
 ![Data Pipeline Architecture](Images/data_warehouse_flow.JPG)
 
 ---
 
 ## 🌐 Medallion Layer Descriptions
 
-###  Bronze Layer
-- Raw data import (no transformation)
-- Includes: crm_cust_info, erp_cust_az12, erp_loc_a101, erp_sales_data
-- Stored in `ddl_bronze.sql`
+###  🥉 Bronze Layer
+Contains scripts that ingest and stage raw data from different sources. This includes CRM and ERP systems. No transformations are done at this stage apart from basic type handling and storage.
 
-###  Silver Layer
+In Summary
+- Raw data import (no transformation)
+- Includes: `crm_cust_info`, `erp_cust_az12`, `erp_loc_a101`, `erp_sales_data`
+- Stored in `bronze/` [scripts](https://github.com/PeterAnalyst/sql_data_warehouse_project/blob/main/scripts/bronze/ddl_bronze.sql)
+
+###  🥈 Silver Layer
+Scripts in this layer focus on cleaning and integrating data. Duplicate records are handled, column types are standardized, and preliminary joins across business domains are performed.
+
+In Sumarry
 - Cleaned and standardized data
 - Data Normalization
-- Stored in `ddl_silver.sql`
+- Stored in `silver/` [scripts](https://github.com/PeterAnalyst/sql_data_warehouse_project/blob/main/scripts/silver/ddl_silver.sql)
 
-###  Gold Layer
+###  🥇 Gold Layer
+This layer contains modeled and aggregated data used for business analysis. Tables are built using star-schema modeling with clear fact and dimension tables for analysis.
+
+In Summary
 - Cleaned and trusted views for analysis and Modelled into star schema
 - Star schema: fact and dimension tables
 - Scripts:
@@ -105,18 +127,34 @@ data-warehouse-project/
  ## 🔧Flow Chart
   ![flow Chart](Images/data_warehouse_flow2.JPG)
 
+ 
 ---
 
 ## ⭐ Star Schema ERD
 
 **Fact Table**:
-- `facts_sales` (sales data)
+- `facts_sales` (measures sales transactions)
 
 **Dimension Tables**:
 - `dim_customer` (customer attributes)
 - `dim_products` (product attributes)
   
 ![Star Schema ERD](Images/star_schema_gold_layer.JPG)
+
+---
+
+### 📊 Advanced Analytics (NEW)
+To extract actionable business insights, I developed an Advanced Analytics layer on top of the Gold Layer. These SQL scripts include logic for:
+
+* KPI exploration and reporting
+* Ranking and segmentation
+* Customer lifecycle and product performance
+* Time-based and cumulative trend analysis
+
+📁 Folder:[/advanced_analytics](https://github.com/PeterAnalyst/sql_data_warehouse_project/tree/main/advanced_analytics)
+
+📘 Each analysis type is documented in [advanced_analytics/README.md](https://github.com/PeterAnalyst/sql_data_warehouse_project/blob/main/advanced_analytics/README.md)
+
 ---
 
 ## 🧹 Data Quality Checks
@@ -152,7 +190,8 @@ END AS gender
 * Schema Design
 * Data Quality Enforcement
 * Star Schema Construction
-* Analytical Reporting with SQL
+* Analytical, KPI & Business Reporting with SQL
+* Documentation & Diagramming
 
 ---
 
